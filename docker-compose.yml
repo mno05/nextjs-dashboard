@@ -1,0 +1,25 @@
+version: '3.9' # Ou une autre version appropriée
+services:
+  next_dash_bord:
+    container_name: next_dash_bord
+    image: node:18
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    volumes:
+      - ./:/app/
+    env_file:
+      - ./.env
+    command: >
+      /bin/bash -c "npm i && npm run dev"
+    networks:
+      - dev-qv-network
+
+    # depends_on:
+    #   - app_creer_pme_preprod
+
+
+networks: 
+  dev-qv-network:
+    name: dev-qv-network
+    external: false
